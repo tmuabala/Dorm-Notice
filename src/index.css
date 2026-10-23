@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;600;700&family=Outfit:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap');
+@import 'tailwindcss';
+
+@theme {
+  --font-display: 'Roboto Slab', serif;
+  --font-body: 'Outfit', sans-serif;
+  --font-mono: 'DM Mono', monospace;
+
+  --color-board-bg: #f5efe6;
+  --color-board-felt: #c8a97e;
+  --color-pin-red: #d94f3d;
+  --color-pin-blue: #3d6fb5;
+  --color-pin-green: #3d9e60;
+  --color-card-white: #fffef9;
+  --color-card-yellow: #fef9c3;
+  --color-card-pink: #fce7f3;
+  --color-card-blue: #dbeafe;
+  --color-ink: #2a1f14;
+  --color-ink-muted: #7a6a58;
+  --color-accent: #c45c2a;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: #e8ddd0;
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #c8a97e88; border-radius: 3px; }
+

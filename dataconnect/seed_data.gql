@@ -1,0 +1,54 @@
+mutation SeedDatabase @transaction {
+  user_insertMany(data: [
+    { username: "alice_dev", email: "alice@example.com", role: "admin" },
+    { username: "bob_manager", email: "bob@example.com", role: "manager" },
+    { username: "charlie_user", email: "charlie@example.com", role: "user" }
+  ])
+  category_insertMany(data: [
+    { name: "General" },
+    { name: "Maintenance" },
+    { name: "Urgent" }
+  ])
+  notice_insertMany(data: [
+    {
+      title: "Building Maintenance",
+      content: "Water shutdown on Friday.",
+      createdAt: "2023-10-01T10:00:00Z",
+      author: { id: "00000000-0000-0000-0000-000000000001" },
+      category: { id: "00000000-0000-0000-0000-000000000001" }
+    },
+    {
+      title: "Holiday Party",
+      content: "Join us in the lobby.",
+      createdAt: "2023-10-02T12:00:00Z",
+      author: { id: "00000000-0000-0000-0000-000000000002" },
+      category: { id: "00000000-0000-0000-0000-000000000001" }
+    }
+  ])
+  maintenanceRequest_insertMany(data: [
+    {
+      description: "Leaking faucet in kitchen.",
+      status: "open",
+      reporter: { id: "00000000-0000-0000-0000-000000000003" }
+    },
+    {
+      description: "Elevator B stuck.",
+      status: "in-progress",
+      reporter: { id: "00000000-0000-0000-0000-000000000002" }
+    }
+  ])
+  comment_insertMany(data: [
+    {
+      text: "Thanks for the heads up!",
+      createdAt: "2023-10-01T11:00:00Z",
+      author: { id: "00000000-0000-0000-0000-000000000003" },
+      notice: { id: "00000000-0000-0000-0000-000000000001" }
+    },
+    {
+      text: "Will bring cookies.",
+      createdAt: "2023-10-02T13:00:00Z",
+      author: { id: "00000000-0000-0000-0000-000000000001" },
+      notice: { id: "00000000-0000-0000-0000-000000000002" }
+    }
+  ])
+}

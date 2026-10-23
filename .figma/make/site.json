@@ -1,0 +1,10 @@
+{
+  "description": "Displays and manages dormitory notices in a simple, user-friendly interface to keep residents informed and updated efficiently.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}

@@ -1,0 +1,125 @@
+mutation CreateUser @auth(level: USER) {
+  user_insert(data: {id_expr: "auth.uid", email: "user@example.com", username: "newuser", role: "Member"})
+}
+
+mutation UpdateUser @auth(level: USER) {
+  user_update(key: {id_expr: "auth.uid"}, data: {username: "updatedname"})
+}
+
+mutation DeleteUser @auth(level: USER) {
+  user_delete(key: {id_expr: "auth.uid"})
+}
+
+query GetCurrentUser @auth(level: USER) {
+  user(key: {id_expr: "auth.uid"}) {
+    username
+    email
+    role
+  }
+}
+
+query ListUsers @auth(level: USER) {
+  users {
+    username
+    email
+  }
+}
+
+mutation CreateCategory @auth(level: USER) {
+  category_insert(data: {name: "General"})
+}
+
+mutation UpdateCategory @auth(level: USER) {
+  category_update(id: "00000000-0000-0000-0000-000000000000", data: {name: "Updated"})
+}
+
+mutation DeleteCategory @auth(level: USER) {
+  category_delete(id: "00000000-0000-0000-0000-000000000000")
+}
+
+query GetCategory @auth(level: PUBLIC, insecureReason: "Categories are public information.") {
+  category(id: "00000000-0000-0000-0000-000000000000") {
+    name
+  }
+}
+
+query ListCategories @auth(level: PUBLIC, insecureReason: "Categories are public information.") {
+  categories {
+    name
+  }
+}
+
+mutation CreateNotice @auth(level: USER) {
+  notice_insert(data: {title: "Hello", content: "World", createdAt_expr: "request.time", authorId_expr: "auth.uid"})
+}
+
+mutation UpdateNotice @auth(level: USER) {
+  notice_update(id: "00000000-0000-0000-0000-000000000000", data: {title: "New Title"})
+}
+
+mutation DeleteNotice @auth(level: USER) {
+  notice_delete(id: "00000000-0000-0000-0000-000000000000")
+}
+
+query GetNotice @auth(level: PUBLIC, insecureReason: "Notices are intended for all users.") {
+  notice(id: "00000000-0000-0000-0000-000000000000") {
+    title
+    content
+  }
+}
+
+query ListNotices @auth(level: PUBLIC, insecureReason: "Notices are intended for all users.") {
+  notices {
+    title
+  }
+}
+
+mutation CreateMaintenanceRequest @auth(level: USER) {
+  maintenanceRequest_insert(data: {description: "Fix sink", status: "Open", reporterId_expr: "auth.uid"})
+}
+
+mutation UpdateMaintenanceRequest @auth(level: USER) {
+  maintenanceRequest_update(id: "00000000-0000-0000-0000-000000000000", data: {status: "Closed"})
+}
+
+mutation DeleteMaintenanceRequest @auth(level: USER) {
+  maintenanceRequest_delete(id: "00000000-0000-0000-0000-000000000000")
+}
+
+query GetMaintenanceRequest @auth(level: USER) {
+  maintenanceRequest(id: "00000000-0000-0000-0000-000000000000") {
+    description
+    status
+  }
+}
+
+query ListMyMaintenanceRequests @auth(level: USER) {
+  maintenanceRequests(where: {reporterId: {eq_expr: "auth.uid"}}) {
+    description
+    status
+  }
+}
+
+mutation CreateComment @auth(level: USER) {
+  comment_insert(data: {text: "Nice", createdAt_expr: "request.time", authorId_expr: "auth.uid", noticeId: "00000000-0000-0000-0000-000000000000"})
+}
+
+mutation UpdateComment @auth(level: USER) {
+  comment_update(id: "00000000-0000-0000-0000-000000000000", data: {text: "Edited"})
+}
+
+mutation DeleteComment @auth(level: USER) {
+  comment_delete(id: "00000000-0000-0000-0000-000000000000")
+}
+
+query GetComment @auth(level: PUBLIC, insecureReason: "Comments are public.") {
+  comment(id: "00000000-0000-0000-0000-000000000000") {
+    text
+  }
+}
+
+query ListComments @auth(level: PUBLIC, insecureReason: "Comments are public.") {
+  comments {
+    text
+  }
+}

@@ -1,0 +1,36 @@
+type User @table {
+  username: String!
+  email: String!
+  role: String!
+  roomNumber: String
+  phoneNumber: String
+}
+
+type Category @table {
+  name: String!
+  colorCode: String
+}
+
+type Notice @table {
+  title: String!
+  content: String!
+  createdAt: Timestamp!
+  author: User!
+  category: Category
+  expiryDate: Date
+}
+
+type MaintenanceRequest @table {
+  description: String!
+  status: String!
+  reporter: User!
+  resolutionNotes: String
+  photoUrl: String
+}
+
+type Comment @table {
+  text: String!
+  createdAt: Timestamp!
+  author: User!
+  notice: Notice!
+}
